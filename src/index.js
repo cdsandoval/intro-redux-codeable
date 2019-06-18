@@ -1,12 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import store from "./store";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import CreateTodoForm from "./components/create-todo-form";
+import TodoList from "./components/todo-list";
+import Filters from "./components/filters";
+
+function App() {
+  return (
+    <>
+      <Filters />
+      <CreateTodoForm />
+      <TodoList />
+    </>
+  );
+}
+
+const $root = document.getElementById("root");
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  $root
+);
